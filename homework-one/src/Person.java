@@ -1,5 +1,6 @@
-import java.util.Arrays;
+
 import java.util.List;
+import java.util.Objects;
 
 public class Person {
     String name;
@@ -8,21 +9,18 @@ public class Person {
 
     public static void display() {
     }
-    public static List Allemployees(List<String> employees){
-      return null;
+
+    public static List Allemployees(List<String> employees) {
+        if (Objects.isNull(employees)) {
+            return employees;
+        }
+        return null;
     }
-     public  static double expensesCompany(double expenses){
-       return 0.0;
-     }
 
+    public static double expensesCompany(double expenses) {
+        return 0.0;
+    }
 }
-
-
-
-
-
-
-
 
 
 //создать
