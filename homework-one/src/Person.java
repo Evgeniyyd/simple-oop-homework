@@ -1,4 +1,5 @@
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 
@@ -41,16 +42,18 @@ public class Person {
         if (allSales == 0) {
             return 0;
         }
-        return 0;
+
+        return salesManagers(345);
     }
 
-    public static boolean employeeSearch(int[] allEmployee, int employee) {
+    public static boolean employeeSearch(String[] allEmployee, String employee) {
         if (allEmployee == null || allEmployee.length == 0) {
-            System.out.println(" ");
+            return false;
         }
-        return true;
+            return Arrays.stream(allEmployee).anyMatch(str -> str.equals(employee));
+        }
     }
-}
+
 //   - Статический метод поиска сотрудника в массиве
 //   - метод возвращает true если сотрудник в массиве есть и false если нет
 //   - Принимает массив сотрудников и искомого сотрудника
