@@ -1,7 +1,7 @@
 public class Employee extends Person {
-    String company;
-    String position;
-    double baseSalary;
+    private String company;
+    private String position;
+    private double baseSalary;
 
     public Employee(String name, int age, boolean married, String company, String position, double baseSalary) {
         super(name, age, married);
@@ -11,8 +11,15 @@ public class Employee extends Person {
     }
 
     public void display() {
-        System.out.println();
-        System.out.println();
-        System.out.println();
+        System.out.println(this.toString());
+
+    }
+
+    @Override
+    public String toString() {
+        return "Employee" +" "+
+                "company= " + company  +
+                ", position= " + position  +
+                ", baseSalary= " + baseSalary;
     }
 }

@@ -8,12 +8,18 @@ public class WageEmployee extends Employee {
         this.wage = wage;
     }
 
-    public  void display() {
-        System.out.println();
-        System.out.println();
-        System.out.println();
+    public void display() {
+        System.out.println(this.toString());
+
     }
-   public double calculateSalary(){
-        return baseSalary + (hours * wage);
+//   public double calculateSalary(){
+//        return baseSalary + (hours * wage);
+//    }
+
+    @Override
+    public String toString() {
+        return "WageEmployee" + "\n" +
+                "hours= " + hours +
+                ", wage= " + wage;
     }
 }

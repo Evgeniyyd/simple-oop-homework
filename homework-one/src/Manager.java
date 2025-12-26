@@ -1,4 +1,4 @@
-public class Manager extends Employee{
+public class Manager extends Employee {
     int grade;
 
     public Manager(String name, int age, boolean married, String company, String position, double baseSalary, int grade) {
@@ -6,12 +6,17 @@ public class Manager extends Employee{
         this.grade = grade;
     }
 
-    public  void display(){
-        System.out.println();
-        System.out.println();
-        System.out.println();
+    public void display() {
+        System.out.println(this.toString());
+
     }
-    public double calculateSalary(){
-        return baseSalary * grade;
+
+    @Override
+    public String toString() {
+        return "Manager:" + "\n" +
+                "grade= " + grade;
     }
+//        public double calculateSalary(){
+//        return baseSalary * grade;
+//    }
 }
