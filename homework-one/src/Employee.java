@@ -30,7 +30,7 @@ public class Employee extends Person {
 
     @Override
     public String toString() {
-        return "Employee" + " " +
+        return "Employee:" + "\n" +
                 "company= " + company +
                 ", position= " + position +
                 ", baseSalary= " + baseSalary;

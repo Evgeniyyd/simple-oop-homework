@@ -28,8 +28,8 @@ public class SaleManager extends Employee {
         double sales = getBaseSalary();
         double bonus = getBonus();
 
-        if (baseSalary < 0 || sales < 0 || bonus < 0) {
-            throw  new IllegalArgumentException("Ошибка");
+        if ((baseSalary < 0 || sales < 0) && bonus < 0) {
+            throw new IllegalArgumentException("Ошибка");
         }
 
         return baseSalary + (bonus % sales);

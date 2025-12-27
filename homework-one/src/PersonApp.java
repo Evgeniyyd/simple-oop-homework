@@ -6,7 +6,7 @@ public class PersonApp {
     // обо всех сотрудниках из массива.
     public static void allemployees(Employee[] employees) {
         if (employees == null || employees.length == 0) {
-            return;
+            System.out.println(" ");
         }
         StringBuilder builder = new StringBuilder();
         for (int i = 0; i < employees.length; i++) {
@@ -18,17 +18,15 @@ public class PersonApp {
     // - Статический метод, который вернет затраты компании(зарплата всех сотрудников).
     public static void expensesCompany(int salary) {
         if (salary == 0) return;
-
+        System.out.println();
     }
 
     // - Статический метод, который вернет доход компании(все продажи).
     // Это приносят только **SalesManagers**.
     public static void salesManagers(int allSales) {
         if (allSales == 0) {
-            return;
+            System.out.println(allSales);
         }
-
-        return;
     }
 
     public static boolean employeeSearch(String[] allEmployee, String employee) {
