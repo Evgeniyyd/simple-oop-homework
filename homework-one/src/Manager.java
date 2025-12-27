@@ -16,7 +16,11 @@ public class Manager extends Employee {
         return "Manager:" + "\n" +
                 "grade= " + grade;
     }
-//        public double calculateSalary(){
-//        return baseSalary * grade;
-//    }
+        public  double calculateSalary(){
+        double baseSalary = getBaseSalary();
+        if (baseSalary <0){
+            System.out.println("Ошибка!");
+        }
+        return baseSalary * grade;
+    }
 }

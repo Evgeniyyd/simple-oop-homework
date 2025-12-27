@@ -9,6 +9,18 @@ public class Person {
         this.married = married;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public boolean isMarried() {
+        return married;
+    }
+
     public void display() {
         System.out.println(this.toString());
 

@@ -1,6 +1,6 @@
 public class WageEmployee extends Employee {
-    double hours;
-    double wage;
+    private double hours;
+    private double wage;
 
     public WageEmployee(String name, int age, boolean married, String company, String position, double baseSalary, double hours, double wage) {
         super(name, age, married, company, position, baseSalary);
@@ -8,13 +8,27 @@ public class WageEmployee extends Employee {
         this.wage = wage;
     }
 
+    public double getHours() {
+        return hours;
+    }
+
+    public double getWage() {
+        return wage;
+    }
+
+    @Override
     public void display() {
         System.out.println(this.toString());
 
     }
-//   public double calculateSalary(){
-//        return baseSalary + (hours * wage);
-//    }
+
+    public double calculateSalary() {
+        double salary = getBaseSalary();
+        if (salary < 0){
+            System.out.println("Ошибка!");
+        }
+        return salary + (hours * wage);
+    }
 
     @Override
     public String toString() {

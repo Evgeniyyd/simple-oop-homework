@@ -1,7 +1,7 @@
 public class Employee extends Person {
     private String company;
     private String position;
-    private double baseSalary;
+    private static double baseSalary;
 
     public Employee(String name, int age, boolean married, String company, String position, double baseSalary) {
         super(name, age, married);
@@ -10,6 +10,19 @@ public class Employee extends Person {
         this.baseSalary = baseSalary;
     }
 
+    public String getCompany() {
+        return company;
+    }
+
+    public String getPosition() {
+        return position;
+    }
+
+    public double getBaseSalary() {
+        return baseSalary;
+    }
+
+    @Override
     public void display() {
         System.out.println(this.toString());
 
@@ -17,9 +30,9 @@ public class Employee extends Person {
 
     @Override
     public String toString() {
-        return "Employee" +" "+
-                "company= " + company  +
-                ", position= " + position  +
+        return "Employee" + " " +
+                "company= " + company +
+                ", position= " + position +
                 ", baseSalary= " + baseSalary;
     }
 }

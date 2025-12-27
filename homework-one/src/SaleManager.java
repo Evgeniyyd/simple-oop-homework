@@ -9,20 +9,36 @@ public class SaleManager extends Employee {
         this.bonus = bonus;
     }
 
+    public double getTotalSales() {
+        return totalSales;
+    }
+
+    public double getBonus() {
+        return bonus;
+    }
+
+    @Override
     public void display() {
         System.out.println(this.toString());
 
     }
 
     public double calculateSalary() {
+        double baseSalary = getBaseSalary();
+        double sales = getBaseSalary();
+        double bonus = getBonus();
 
-        return 0;
+        if (baseSalary < 0 || sales < 0 || bonus < 0) {
+            System.out.println("Ошибка!");
+        }
+
+        return baseSalary + (bonus % sales);
     }
 
     @Override
     public String toString() {
         return "SaleManager" + "\n" +
                 "totalSales= " + totalSales +
-                ", bonus= " + bonus + super.toString();
+                ", bonus= " + bonus;
     }
 }
