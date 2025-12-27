@@ -1,4 +1,5 @@
 import java.util.Arrays;
+import java.util.Objects;
 
 public class PersonApp {
 
@@ -6,19 +7,30 @@ public class PersonApp {
     // обо всех сотрудниках из массива.
     public static void allemployees(Employee[] employees) {
         if (employees == null || employees.length == 0) {
-            System.out.println(" ");
+            throw new IllegalArgumentException("Ошибка");
         }
-        StringBuilder builder = new StringBuilder();
-        for (int i = 0; i < employees.length; i++) {
-            builder.append(employees[i]+"\n");
+        try {
+
+            StringBuilder builder = new StringBuilder();
+            for (int i = 0; i < employees.length; i++) {
+                builder.append(employees[i] + "\n");
+            }
+            System.out.println(builder);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
         }
-        System.out.println(builder);
     }
 
     // - Статический метод, который вернет затраты компании(зарплата всех сотрудников).
-    public static void expensesCompany(int salary) {
-        if (salary == 0) return;
-        System.out.println();
+    public static double expensesCompany(Employee[] employeeSalary) {
+        if (employeeSalary == null || employeeSalary.length == 0) {
+            throw new IllegalArgumentException("Ошибка");
+        }
+        double salar = 0;
+        for (Employee employee : employeeSalary) {
+            salar += employee.getBaseSalary();
+        }
+        return salar;
     }
 
     // - Статический метод, который вернет доход компании(все продажи).
@@ -27,6 +39,7 @@ public class PersonApp {
         if (allSales == 0) {
             System.out.println(allSales);
         }
+
     }
 
     public static boolean employeeSearch(String[] allEmployee, String employee) {
