@@ -29,7 +29,7 @@ public class SaleManager extends Employee {
         double bonus = getBonus();
 
         if (baseSalary < 0 || sales < 0 || bonus < 0) {
-            System.out.println("Ошибка!");
+            throw  new IllegalArgumentException("Ошибка");
         }
 
         return baseSalary + (bonus % sales);

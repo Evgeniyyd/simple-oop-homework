@@ -25,7 +25,7 @@ public class WageEmployee extends Employee {
     public double calculateSalary() {
         double salary = getBaseSalary();
         if (salary < 0){
-            System.out.println("Ошибка!");
+          throw  new IllegalArgumentException("Ошибка");
         }
         return salary + (hours * wage);
     }
