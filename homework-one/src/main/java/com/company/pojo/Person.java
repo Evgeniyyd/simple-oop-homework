@@ -1,30 +1,19 @@
 package com.company.pojo;
 
+import lombok.EqualsAndHashCode;
 import lombok.ToString;
 
 @ToString
-
+@EqualsAndHashCode
 public abstract class Person {
-    private String name;
     private int age;
+    private String name;
     private boolean married;
 
     public Person(String name, int age, boolean married) {
-        this.name = name;
         this.age = age;
+        this.name = name;
         this.married = married;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public int getAge() {
-        return age;
-    }
-
-    public boolean isMarried() {
-        return married;
     }
 
     public void display() {
@@ -32,11 +21,4 @@ public abstract class Person {
 
     }
 
-
-    public String toString() {
-        return "Person:" + "\n" +
-                "name= " + name +
-                ", age= " + age +
-                ", married= " + married;
-    }
 }

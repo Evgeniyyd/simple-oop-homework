@@ -1,5 +1,12 @@
 package com.company.pojo;
 
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.ToString;
+
+@EqualsAndHashCode(callSuper = true)
+@ToString(callSuper = true)
+@Getter
 public class SaleManager extends Employee {
     private double totalSales;
     private double bonus;
@@ -11,36 +18,13 @@ public class SaleManager extends Employee {
         this.bonus = bonus;
     }
 
-    public double getTotalSales() {
-        return totalSales;
-    }
-
-    public double getBonus() {
-        return bonus;
-    }
-
-    @Override
-    public void display() {
-        System.out.println(this.toString());
-
-    }
-
     public double calculateSalary() {
         double baseSalary = getBaseSalary();
-        double sales = getBaseSalary();
-        double bonus = getBonus();
 
-        if ((baseSalary < 0 || sales < 0) && bonus < 0) {
-            throw new IllegalArgumentException("Ошибка значение 0");
+        if (baseSalary < 0) {
+            throw new IllegalArgumentException("Зарплата не может быть отрецательной");
         }
 
-        return baseSalary + (bonus % sales);
-    }
-
-    @Override
-    public String toString() {
-        return "SaleManager" + "\n" +
-                "totalSales= " + totalSales +
-                ", bonus= " + bonus;
+        return baseSalary + totalSales * bonus / 100;
     }
 }

@@ -1,5 +1,10 @@
 package com.company.pojo;
 
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
+
+@EqualsAndHashCode(callSuper = true)
+@ToString(callSuper = true)
 public class WageEmployee extends Employee {
     private double hours;
     private double wage;
@@ -10,32 +15,11 @@ public class WageEmployee extends Employee {
         this.wage = wage;
     }
 
-    public double getHours() {
-        return hours;
-    }
-
-    public double getWage() {
-        return wage;
-    }
-
-    @Override
-    public void display() {
-        System.out.println(this.toString());
-
-    }
-
     public double calculateSalary() {
         double salary = getBaseSalary();
         if (salary < 0){
-          throw  new IllegalArgumentException("Ошибка значение 0 ");
+          throw  new IllegalArgumentException("Зарплата не может быть отрецательной");
         }
         return salary + (hours * wage);
-    }
-
-    @Override
-    public String toString() {
-        return "WageEmployee" + "\n" +
-                "hours= " + hours +
-                ", wage= " + wage;
     }
 }

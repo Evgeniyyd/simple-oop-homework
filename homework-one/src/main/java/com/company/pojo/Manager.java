@@ -1,36 +1,34 @@
 package com.company.pojo;
 
-import lombok.EqualsAndHashCode;
+import lombok.Getter;
 import lombok.ToString;
-@EqualsAndHashCode
-@ToString
+import lombok.EqualsAndHashCode;
+
+@ToString(callSuper = true)
+@EqualsAndHashCode(callSuper = true)
 public class Manager extends Employee {
-   private int grade;
+    @Getter
+    private int grade;
 
     public Manager(String name, int age, boolean married, String company, String position, double baseSalary, int grade) {
         super(name, age, married, company, position, baseSalary);
-        this.grade = grade;
+        setGrade(grade);
     }
 
-    public int getGrade() {
-        return grade;
+    public void setGrade(int grade) {
+        if (grade >= 1 && grade <= 6) {
+            this.grade = grade;
+        }
     }
 
-    public void display() {
-        System.out.println(this.toString());
-
-    }
     @Override
-    public String toString() {
-        return "Manager:" + "\n" +
-                "grade= " + grade;
-    }
-
     public double calculateSalary() {
         double baseSalary = getBaseSalary();
         if (baseSalary < 0) {
-            throw new IllegalArgumentException("Ошибка пустой массив");
+            throw new IllegalArgumentException("Зарплата не может быть отрецательной");
         }
+
         return baseSalary * grade;
     }
 }
+
