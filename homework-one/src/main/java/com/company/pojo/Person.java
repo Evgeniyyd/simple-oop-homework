@@ -1,4 +1,10 @@
-public class Person {
+package com.company.pojo;
+
+import lombok.ToString;
+
+@ToString
+
+public abstract class Person {
     private String name;
     private int age;
     private boolean married;
@@ -26,7 +32,7 @@ public class Person {
 
     }
 
-    @Override
+
     public String toString() {
         return "Person:" + "\n" +
                 "name= " + name +

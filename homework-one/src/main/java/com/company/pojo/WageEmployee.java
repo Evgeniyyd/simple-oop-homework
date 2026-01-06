@@ -1,3 +1,5 @@
+package com.company.pojo;
+
 public class WageEmployee extends Employee {
     private double hours;
     private double wage;
@@ -25,7 +27,7 @@ public class WageEmployee extends Employee {
     public double calculateSalary() {
         double salary = getBaseSalary();
         if (salary < 0){
-          throw  new IllegalArgumentException("Ошибка");
+          throw  new IllegalArgumentException("Ошибка значение 0 ");
         }
         return salary + (hours * wage);
     }

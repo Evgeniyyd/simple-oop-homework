@@ -1,3 +1,9 @@
+package com.company.pojo;
+
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
+@EqualsAndHashCode
+@ToString
 public class Manager extends Employee {
    private int grade;
 
@@ -14,7 +20,6 @@ public class Manager extends Employee {
         System.out.println(this.toString());
 
     }
-
     @Override
     public String toString() {
         return "Manager:" + "\n" +
@@ -24,7 +29,7 @@ public class Manager extends Employee {
     public double calculateSalary() {
         double baseSalary = getBaseSalary();
         if (baseSalary < 0) {
-            throw new IllegalArgumentException("Ошибка");
+            throw new IllegalArgumentException("Ошибка пустой массив");
         }
         return baseSalary * grade;
     }

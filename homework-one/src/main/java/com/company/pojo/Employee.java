@@ -1,7 +1,9 @@
-public class Employee extends Person {
+package com.company.pojo;
+
+public abstract class Employee extends Person {
     private String company;
     private String position;
-    private static double baseSalary;
+    private  double baseSalary;
 
     public Employee(String name, int age, boolean married, String company, String position, double baseSalary) {
         super(name, age, married);
@@ -21,6 +23,7 @@ public class Employee extends Person {
     public double getBaseSalary() {
         return baseSalary;
     }
+  public abstract double  calculateSalary();
 
     @Override
     public void display() {

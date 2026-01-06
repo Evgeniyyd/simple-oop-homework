@@ -1,3 +1,5 @@
+package com.company.pojo;
+
 public class SaleManager extends Employee {
     private double totalSales;
     private double bonus;
@@ -29,7 +31,7 @@ public class SaleManager extends Employee {
         double bonus = getBonus();
 
         if ((baseSalary < 0 || sales < 0) && bonus < 0) {
-            throw new IllegalArgumentException("Ошибка");
+            throw new IllegalArgumentException("Ошибка значение 0");
         }
 
         return baseSalary + (bonus % sales);
