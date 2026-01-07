@@ -15,38 +15,20 @@ public class PersonApp {
         if (Objects.isNull(employees) || employees.length == 0) {
             throw new IllegalArgumentException("Ошибка пустой массив!");
         }
-        for (Employee employee : employees) {
-            if (Objects.nonNull(employee)) {
-                employee.display();
-            }
-        }
+        Arrays.stream(employees).filter(Objects::nonNull).forEach(Employee::display);
     }
 
     // - Статический метод, который вернет затраты компании(зарплата всех сотрудников).
     public static double getSumSalary(Employee[] employees) {
-        if (employees == null || employees.length == 0) {
-            throw new IllegalArgumentException("Ошибка пустой массив!");
-        }
-        double salar = 0;
-        for (Employee employee : employees) {
-            salar += employee.calculateSalary();
-        }
-        return salar;
+        double sum = Arrays.stream(employees).mapToDouble(Employee::calculateSalary).sum();
+        return sum;
     }
 
     // - Статический метод, который вернет доход компании(все продажи).
     // Это приносят только **SalesManagers**.
     public static double sumCompanyRevenue(Employee[] employees) {
-        if (employees == null || employees.length == 0) {
-            throw new IllegalArgumentException("Ошибка пустой массив!");
-        }
-        double sum = 0.0;
-        for (Employee employee : employees) {
-            if (employee instanceof SaleManager) {
-                SaleManager saleManager = (SaleManager) employee;
-                sum += saleManager.getTotalSales();
-            }
-        }
+        double sum = Arrays.stream(employees).filter(employee -> employee instanceof SaleManager).map(employee ->
+                (SaleManager) employee).mapToDouble(SaleManager::getTotalSales).sum();
         return sum;
     }
 
