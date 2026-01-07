@@ -23,5 +23,8 @@ public class Main {
         Employee[] employees = new Employee[]{manager1, manager2, manager3, saleManager1, saleManager2, saleManager3,
                 wageEmployee1, wageEmployee2, wageEmployee3, wageEmployee4};
         PersonApp.printAllEmployee(employees);
+        PersonApp.getSumSalary(employees);
+        PersonApp.sumCompanyRevenue(employees);
+        PersonApp.employeeSearch(employees, manager1);
     }
 }
