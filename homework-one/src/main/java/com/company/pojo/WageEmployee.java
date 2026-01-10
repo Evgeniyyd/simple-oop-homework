@@ -1,13 +1,13 @@
 package com.company.pojo;
 
-import lombok.EqualsAndHashCode;
 import lombok.ToString;
+import lombok.EqualsAndHashCode;
 
-@EqualsAndHashCode(callSuper = true)
 @ToString(callSuper = true)
+@EqualsAndHashCode(callSuper = true)
 public class WageEmployee extends Employee {
-    private double hours;
     private double wage;
+    private double hours;
 
     public WageEmployee(String name, int age, boolean married, String company, String position, double baseSalary, double hours, double wage) {
         super(name, age, married, company, position, baseSalary);
@@ -18,7 +18,7 @@ public class WageEmployee extends Employee {
     public double calculateSalary() {
         double salary = getBaseSalary();
         if (salary < 0){
-          throw  new IllegalArgumentException("Зарплата не может быть отрецательной");
+            throw  new IllegalArgumentException("Зарплата не может быть отрецательной");
         }
         return salary + (hours * wage);
     }

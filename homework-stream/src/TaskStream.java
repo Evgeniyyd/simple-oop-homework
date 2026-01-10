@@ -10,7 +10,9 @@ public class TaskStream {
      * @return сумма по всем книгам
      */
     public static double task1(List<Book> books) {
-        return 0.0;
+      return (double) books.stream().count();
+
+
     }
 
     /**
@@ -20,6 +22,7 @@ public class TaskStream {
      * @return количество уникальных авторов
      */
     public static long task2(List<Book> books) {
+
         return 0;
     }
 
