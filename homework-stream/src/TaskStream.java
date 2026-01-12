@@ -1,6 +1,13 @@
+import lombok.EqualsAndHashCode;
+import lombok.NonNull;
+import lombok.ToString;
+
+
 import java.util.*;
 import java.util.stream.Collectors;
 
+@ToString(callSuper = true)
+@EqualsAndHashCode
 public class TaskStream {
 
     /**
@@ -9,10 +16,11 @@ public class TaskStream {
      * @param books - список книг
      * @return сумма по всем книгам
      */
-    public static double task1(List<Book> books) {
-      return (double) books.stream().count();
-
-
+    public static double task1(@NonNull List<Book> books) {
+        return books
+                .stream()
+                .mapToDouble(Book::getPrice)
+                .sum();
     }
 
     /**
@@ -21,9 +29,12 @@ public class TaskStream {
      * @param books - список книг
      * @return количество уникальных авторов
      */
-    public static long task2(List<Book> books) {
-
-        return 0;
+    public static long task2(@NonNull List<Book> books) {
+        return (Long) books
+                .stream()
+                .map(book -> book.getAuthor())
+                .distinct()
+                .count();
     }
 
     /**
@@ -32,8 +43,10 @@ public class TaskStream {
      * @param books - список книг
      * @return ожидаемый мап
      */
-    public static Map<String, List<String>> task3(List<Book> books) {
-        return Collections.emptyMap();
+    public static Map<String, List<String>> task3(@NonNull List<Book> books) throws IllegalArgumentException {
+        return books.stream()
+                .collect(Collectors
+                        .toMap(Book::getTitle, book -> book.getReviews()));
     }
 
     /**
@@ -43,8 +56,11 @@ public class TaskStream {
      * @param books - список книг
      * @return ожидаемый мап
      */
-    public static Map<String, List<String>> task4(List<Book> books) {
-        return Collections.emptyMap();
+    public static Map<String, List<String>> task4(@NonNull List<Book> books) {
+        return books.stream()
+                .filter(book -> !book.getReviews().isEmpty())
+                .collect(Collectors
+                .toMap(Book::getTitle, book -> book.getReviews()));
     }
 
     /**

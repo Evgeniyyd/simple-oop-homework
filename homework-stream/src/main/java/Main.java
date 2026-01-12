@@ -1,7 +1,12 @@
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
+
+import java.awt.print.Book.*;
 import java.util.*;
 
+@ToString(callSuper = true)
+@EqualsAndHashCode
 public class Main {
-
     private static final List<Book> books = new ArrayList<>();
 
     private static final Book book1 = new Book("Автор 1", "Книга 1", 29.99);
