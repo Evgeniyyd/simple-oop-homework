@@ -6,6 +6,7 @@ import lombok.ToString;
 import java.util.*;
 import java.util.stream.Collectors;
 
+
 @ToString(callSuper = true)
 @EqualsAndHashCode
 public class TaskStream {
@@ -46,7 +47,8 @@ public class TaskStream {
     public static Map<String, List<String>> task3(@NonNull List<Book> books) throws IllegalArgumentException {
         return books.stream()
                 .collect(Collectors
-                        .toMap(Book::getTitle, book -> book.getReviews()));
+                        .toMap(Book::getTitle,
+                                book -> book.getReviews()));
     }
 
     /**
@@ -60,7 +62,8 @@ public class TaskStream {
         return books.stream()
                 .filter(book -> !book.getReviews().isEmpty())
                 .collect(Collectors
-                .toMap(Book::getTitle, book -> book.getReviews()));
+                        .toMap(Book::getTitle,
+                                book -> book.getReviews()));
     }
 
     /**
@@ -70,7 +73,11 @@ public class TaskStream {
      * @return список отзывов
      */
     public static List<String> task5(List<Book> books) {
-        return Collections.emptyList();
+        return books.stream()
+                .flatMap(book
+                        -> book.getReviews()
+                        .stream())
+                .collect(Collectors.toList());
     }
 
     /**
@@ -80,7 +87,10 @@ public class TaskStream {
      * @return среднюю стоимость книги
      */
     public static double task6(List<Book> books) {
-        return 0.;
+        return books.stream()
+                .mapToDouble(Book::getPrice)
+                .average()
+                .getAsDouble();
     }
 
     /**
@@ -90,7 +100,10 @@ public class TaskStream {
      * @return результат
      */
     public static boolean task7(List<Book> books) {
-        return false;
+        return books.stream()
+                .anyMatch(book
+                        -> book.getAuthor()
+                        .contains("Автор"));
     }
 
     /**
@@ -100,7 +113,10 @@ public class TaskStream {
      * @return не больше 3 названий книг
      */
     public static Set<String> task8(List<Book> books) {
-        return Collections.emptySet();
+        return books.stream()
+                .map(book -> book.getTitle())
+                .collect(Collectors.toSet());
+
     }
 
     /**
@@ -110,7 +126,9 @@ public class TaskStream {
      * @return
      */
     public static List<Book> task9(List<Book> books) {
-        return Collections.emptyList();
+        return books.stream().filter(book ->
+                        book.getTitle().length() % 2 == 0 && book.getPrice() < 100)
+                .collect(Collectors.toList());
     }
 
     /**
@@ -130,7 +148,10 @@ public class TaskStream {
      * @return список книг с интересными отзывами
      */
     public static List<Book> task11(List<Book> books) {
-        return Collections.emptyList();
+        return books.stream()
+                .filter(book -> book.getReviews()
+                        .contains("рекомендую"))
+                .collect(Collectors.toList());
     }
 
     /**
