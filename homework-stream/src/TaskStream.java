@@ -149,7 +149,7 @@ public class TaskStream {
      */
     public static List<Book> task11(List<Book> books) {
         return books.stream()
-                .filter(book -> book.getReviews()
+                 .filter(book -> book.getReviews()
                         .contains("рекомендую"))
                 .collect(Collectors.toList());
     }
