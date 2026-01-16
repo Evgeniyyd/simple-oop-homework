@@ -72,7 +72,7 @@ public class TaskStream {
      * @param books - список книг
      * @return список отзывов
      */
-    public static List<String> task5(List<Book> books) {
+    public static List<String> task5(@NonNull List<Book> books) {
         return books.stream()
                 .flatMap(book
                         -> book.getReviews()
@@ -86,7 +86,7 @@ public class TaskStream {
      * @param books - список книг
      * @return среднюю стоимость книги
      */
-    public static double task6(List<Book> books) {
+    public static double task6(@NonNull List<Book> books) {
         return books.stream()
                 .mapToDouble(Book::getPrice)
                 .average()
@@ -99,7 +99,7 @@ public class TaskStream {
      * @param books - список книг
      * @return результат
      */
-    public static boolean task7(List<Book> books) {
+    public static boolean task7(@NonNull List<Book> books) {
         return books.stream()
                 .anyMatch(book
                         -> book.getAuthor()
@@ -112,7 +112,7 @@ public class TaskStream {
      * @param books - список книг
      * @return не больше 3 названий книг
      */
-    public static Set<String> task8(List<Book> books) {
+    public static Set<String> task8(@NonNull List<Book> books) {
         return books.stream()
                 .map(book -> book.getTitle())
                 .collect(Collectors.toSet());
@@ -125,9 +125,12 @@ public class TaskStream {
      * @param books - список книг
      * @return
      */
-    public static List<Book> task9(List<Book> books) {
-        return books.stream().filter(book ->
-                        book.getTitle().length() % 2 == 0 && book.getPrice() < 100)
+    public static List<Book> task9(@NonNull List<Book> books) {
+        return books.stream()
+                .filter(book
+                        -> book.getTitle()
+                        .charAt(6) % 2 == 0
+                        && book.getPrice() < 100)
                 .collect(Collectors.toList());
     }
 
@@ -138,7 +141,11 @@ public class TaskStream {
      * @return Map с двумя ключами
      */
     public static Map<String, List<Book>> task10(List<Book> books) {
-        return Collections.emptyMap();
+        return books.stream()
+                .filter(book -> book.getPrice() > 50)
+                .filter(book -> book.getReviews().contains("OK"))
+                .filter(book -> book.getReviews().contains("NOT OK"))
+                .collect(Collectors.groupingBy(Book::getTitle));
     }
 
     /**
@@ -149,7 +156,7 @@ public class TaskStream {
      */
     public static List<Book> task11(List<Book> books) {
         return books.stream()
-                 .filter(book -> book.getReviews()
+                .filter(book -> book.getReviews()
                         .contains("рекомендую"))
                 .collect(Collectors.toList());
     }
@@ -161,6 +168,6 @@ public class TaskStream {
      * @return самая дешевая книга
      */
     public static Book task12(List<Book> books) {
-        return null;
+        return books.stream().min(Comparator.comparing(Book::getPrice)).orElse(null);
     }
 }
