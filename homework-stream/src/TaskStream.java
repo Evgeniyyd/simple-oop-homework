@@ -18,8 +18,7 @@ public class TaskStream {
      * @return сумма по всем книгам
      */
     public static double task1(@NonNull List<Book> books) {
-        return books
-                .stream()
+        return books.stream()
                 .mapToDouble(Book::getPrice)
                 .sum();
     }
@@ -31,8 +30,7 @@ public class TaskStream {
      * @return количество уникальных авторов
      */
     public static long task2(@NonNull List<Book> books) {
-        return (Long) books
-                .stream()
+        return  books.stream()
                 .map(book -> book.getAuthor())
                 .distinct()
                 .count();
@@ -46,9 +44,7 @@ public class TaskStream {
      */
     public static Map<String, List<String>> task3(@NonNull List<Book> books) throws IllegalArgumentException {
         return books.stream()
-                .collect(Collectors
-                        .toMap(Book::getTitle,
-                                book -> book.getReviews()));
+                .collect(Collectors.toMap(Book::getTitle, book -> book.getReviews()));
     }
 
     /**
@@ -61,9 +57,7 @@ public class TaskStream {
     public static Map<String, List<String>> task4(@NonNull List<Book> books) {
         return books.stream()
                 .filter(book -> !book.getReviews().isEmpty())
-                .collect(Collectors
-                        .toMap(Book::getTitle,
-                                book -> book.getReviews()));
+                .collect(Collectors.toMap(Book::getTitle, book -> book.getReviews()));
     }
 
     /**
@@ -74,9 +68,7 @@ public class TaskStream {
      */
     public static List<String> task5(@NonNull List<Book> books) {
         return books.stream()
-                .flatMap(book
-                        -> book.getReviews()
-                        .stream())
+                .flatMap(book -> book.getReviews().stream())
                 .collect(Collectors.toList());
     }
 
@@ -89,8 +81,7 @@ public class TaskStream {
     public static double task6(@NonNull List<Book> books) {
         return books.stream()
                 .mapToDouble(Book::getPrice)
-                .average()
-                .getAsDouble();
+                .average().orElseThrow();
     }
 
     /**
@@ -101,9 +92,7 @@ public class TaskStream {
      */
     public static boolean task7(@NonNull List<Book> books) {
         return books.stream()
-                .anyMatch(book
-                        -> book.getAuthor()
-                        .contains("Автор"));
+                .anyMatch(book -> book.getAuthor().contains("Автор"));
     }
 
     /**
@@ -115,6 +104,7 @@ public class TaskStream {
     public static Set<String> task8(@NonNull List<Book> books) {
         return books.stream()
                 .map(book -> book.getTitle())
+                .limit(3)
                 .collect(Collectors.toSet());
 
     }
@@ -127,10 +117,8 @@ public class TaskStream {
      */
     public static List<Book> task9(@NonNull List<Book> books) {
         return books.stream()
-                .filter(book
-                        -> book.getTitle()
-                        .charAt(6) % 2 == 0
-                        && book.getPrice() < 100)
+                .filter(book -> book.getTitle().matches(".*[02468].*"))
+                .filter(book -> book.getPrice() <100)
                 .collect(Collectors.toList());
     }
 
@@ -142,11 +130,10 @@ public class TaskStream {
      */
     public static Map<String, List<Book>> task10(List<Book> books) {
         return books.stream()
-                .filter(book -> book.getPrice() > 50)
-                .filter(book -> book.getReviews().contains("OK"))
-                .filter(book -> book.getReviews().contains("NOT OK"))
-                .collect(Collectors.groupingBy(Book::getTitle));
+                .collect(Collectors.groupingBy(book -> (book.getPrice() < 50) ? "OK" : "Not Ok"));
+
     }
+
 
     /**
      * Получить список книг, у которых хотя бы один отзыв содержит слово "рекомендую".
@@ -157,7 +144,8 @@ public class TaskStream {
     public static List<Book> task11(List<Book> books) {
         return books.stream()
                 .filter(book -> book.getReviews()
-                        .contains("рекомендую"))
+                        .stream()
+                        .anyMatch(review -> review.toLowerCase().contains("рекомендую")))
                 .collect(Collectors.toList());
     }
 
@@ -168,6 +156,8 @@ public class TaskStream {
      * @return самая дешевая книга
      */
     public static Book task12(List<Book> books) {
-        return books.stream().min(Comparator.comparing(Book::getPrice)).orElse(null);
+        return books.stream()
+                .min(Comparator.comparing(Book::getPrice))
+                .orElseThrow();
     }
 }
