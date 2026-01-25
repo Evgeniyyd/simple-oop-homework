@@ -1,11 +1,10 @@
-import lombok.EqualsAndHashCode;
 import lombok.NonNull;
-import lombok.ToString;
+
+import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 
-@EqualsAndHashCode()
-@ToString(callSuper = true)
+
 public class Main {
     public static void main(String[] args) {
         printStringReverse("khjg");
@@ -14,15 +13,22 @@ public class Main {
 
     }
 
-    public static void printStringReverse(@NonNull String reverse) {
-        if (reverse.isEmpty() || reverse.equals(" ")) {
+    public static void printStringReverse(@NonNull String string) {
+        if (string.isEmpty() || string.equals(" ")) {
             System.out.println("Wrong string");
         }
-        StringBuilder stringBuilder = new StringBuilder(reverse);
-        Stream.of(stringBuilder)
-                .map(stringBuilder1 -> stringBuilder1.reverse())
-                .filter(revers -> !revers.isEmpty() || !revers.equals(" "))
-                .forEach(System.out::println);
+        char[] charArray = string.toCharArray();
+     IntStream.rangeClosed(1, charArray.length)
+                .mapToObj(i -> charArray[charArray.length-i])
+             .forEach(System.out::println);
+//        StringBuilder stringBuilder = new StringBuilder(string);
+//        System.out.println(stringBuilder.reverse());
+//взять строку, разбить её на символы из этой строки создать интстрим ,
+// используя массив и  интстрим запускать чисела  и обращаться к символам с конца
+
+//        Stream.of(stringBuilder)
+//                .map(stringBuilder1 -> stringBuilder1.reverse())
+//                .forEach(System.out::println);
     }
 
     public static void isPhoneNumber(@NonNull String isNaber) {
